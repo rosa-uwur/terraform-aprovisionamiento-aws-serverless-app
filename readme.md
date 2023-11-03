@@ -56,3 +56,9 @@ terraform apply
 # If you want destroy resouces
 terraform destroy
 ```
+
+## Optional - Backend creation
+
+if you want to use remote state it is required create a S3 Bucket, DynamoDB table is optional in case you want to lock the statefile.
+
+You can find required terraform definition to create backend resouces in [0-backend](./0-backend/)
