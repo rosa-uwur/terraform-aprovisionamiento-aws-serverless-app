@@ -2,12 +2,9 @@ resource "random_id" "bucket_id" {
   byte_length = 1
 }
 resource "aws_s3_bucket" "static-website" {
-  bucket = "static-website-${var.sandbox_id}-${random_id.bucket_id.dec}" # give a unique bucket name
+  bucket = "static-website-${var.sandbox_id}-${random_id.bucket_id.dec}"
   tags = {
     Name = "static-website"
-  }
-   website {
-    index_document = "index.html"
   }
 }
 
@@ -45,7 +42,6 @@ resource "aws_s3_bucket_acl" "static-website" {
   bucket = aws_s3_bucket.static-website.id
   acl    = "public-read"
 }
-
 
 resource "aws_s3_bucket_policy" "static-website" {
   bucket = aws_s3_bucket.static-website.id
