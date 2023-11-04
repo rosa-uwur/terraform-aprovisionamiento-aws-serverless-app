@@ -1,12 +1,12 @@
-resource "aws_s3_bucket_object" "script" {
-  key          = "scripts.js"
+resource "aws_s3_object" "script" {
+  key          = "scripts2.js"
   bucket       = aws_s3_bucket.static-website.id
   content      = replace(file("${path.module}/assets/scripts.js"), "BACKEND_URL", var.backend_endpoint)
   content_type = "text/plain"
   acl          = "public-read"
   depends_on = [aws_s3_bucket_acl.static-website]
 }
-resource "aws_s3_bucket_object" "static-files" {
+resource "aws_s3_object" "static-files" {
   for_each = {
     logo = {
       file = "assets/logo_b.png",
@@ -22,7 +22,7 @@ resource "aws_s3_bucket_object" "static-files" {
       type = "text/html"
     }
   }
-  key          = split("/", each.value.file)[1]
+  key          = "${split("/", each.value.file)[1]}-2"
   bucket       = aws_s3_bucket.static-website.id
   source       = "${path.module}/${each.value.file}"
   content_type = each.value.type
