@@ -33,7 +33,7 @@ resource "aws_dynamodb_table_item" "item" {
       actors  = "Anne Hathaway, Julie Andrews and Heather Matarazzo"
       release = "2001"
     },
-    movie005 = {
+    movie006 = {
       name    = "The Devil Wears Prada"
       actors  = "Meryl Streep, Anne Hathaway and Emily Blunt"
       release = "2006"
