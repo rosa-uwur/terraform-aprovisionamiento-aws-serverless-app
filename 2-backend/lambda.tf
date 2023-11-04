@@ -46,6 +46,7 @@ data "archive_file" "lambda" {
 }
 
 resource "aws_lambda_function" "backend-lambda" {
+  #provider = aws.us-east-2
   filename      = data.archive_file.lambda.output_path
   function_name = "movies-backend-${var.sandbox_id}"
   role          = aws_iam_role.iam-for-lambda.arn

@@ -1,9 +1,11 @@
 resource "aws_s3_bucket_object" "script" {
+  provider     = aws.regional
   key          = "scripts.js"
   bucket       = aws_s3_bucket.static-website.id
   content      = replace(file("${path.module}/assets/scripts.js"), "BACKEND_URL", var.backend_endpoint)
   content_type = "text/plain"
   acl          = "public-read"
+  depends_on = [aws_s3_bucket_acl.static-website]
 }
 resource "aws_s3_bucket_object" "static-files" {
   for_each = {
@@ -26,5 +28,5 @@ resource "aws_s3_bucket_object" "static-files" {
   source       = "${path.module}/${each.value.file}"
   content_type = each.value.type
   acl          = "public-read"
-  etag         = filemd5("${path.module}/${each.value.file}")
+  depends_on = [aws_s3_bucket_acl.static-website]
 }
