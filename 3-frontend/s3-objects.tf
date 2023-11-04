@@ -1,5 +1,4 @@
 resource "aws_s3_bucket_object" "script" {
-  provider     = aws.regional
   key          = "scripts.js"
   bucket       = aws_s3_bucket.static-website.id
   content      = replace(file("${path.module}/assets/scripts.js"), "BACKEND_URL", var.backend_endpoint)
