@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "teraform-backend-sandbox1-211"
-    key    = "sandbox13/backend/terraform.tfstate"
+    key    = "sandbox1/backend/terraform.tfstate"
     region = "us-east-1"
     #dynamodb_table = "" 
   }
