@@ -14,7 +14,7 @@ resource "aws_dynamodb_table" "serverless-database" {
 resource "aws_dynamodb_table_item" "item" {
   for_each = {
     movie001 = {
-      name    = "Sherk"
+      name    = "Shrek"
       actors  = "Cameron Diaz, Mike Myers and Eddie Morphy"
       release = "2008"
     },
@@ -36,7 +36,12 @@ resource "aws_dynamodb_table_item" "item" {
     movie006 = {
       name    = "The Devil Wears Prada"
       actors  = "Meryl Streep, Anne Hathaway and Emily Blunt"
-      release = "2006"
+      release = "2008"
+    },
+    movie007 = {
+      name    = "pruebita"
+      actors  = "no che"
+      release = "2023"
     }
   }
   table_name = aws_dynamodb_table.serverless-database.name

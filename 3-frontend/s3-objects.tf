@@ -1,5 +1,5 @@
 resource "aws_s3_object" "script" {
-  key          = "scripts2.js"
+  key          = "scripts.js"
   bucket       = aws_s3_bucket.static-website.id
   content      = replace(file("${path.module}/assets/scripts.js"), "BACKEND_URL", var.backend_endpoint)
   content_type = "text/plain"
@@ -22,7 +22,7 @@ resource "aws_s3_object" "static-files" {
       type = "text/html"
     }
   }
-  key          = "${split("/", each.value.file)[1]}-2"
+  key          = "${split("/", each.value.file)[1]}"
   bucket       = aws_s3_bucket.static-website.id
   source       = "${path.module}/${each.value.file}"
   content_type = each.value.type
